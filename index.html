@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>云廊 MVP</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="目录">
+        <div class="brand">
+          <div class="brand-mark">115</div>
+          <div>
+            <h1>云廊</h1>
+            <p>私人网盘画廊 MVP</p>
+          </div>
+        </div>
+
+        <button class="connect-button" id="connect115Button" type="button">
+          <span class="icon" aria-hidden="true">⛓</span>
+          查看 115 配置
+        </button>
+
+        <label class="folder-picker">
+          <input id="folderInput" type="file" webkitdirectory multiple />
+          <span class="icon" aria-hidden="true">+</span>
+          导入本地文件夹
+        </label>
+
+        <nav class="tree" id="folderTree" aria-label="文件夹列表"></nav>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Gallery workspace</p>
+            <h2 id="viewTitle">全部文件</h2>
+          </div>
+          <div class="search-wrap">
+            <span class="icon" aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search" placeholder="搜索文件名、目录、标签" />
+          </div>
+        </header>
+
+        <section class="filters" aria-label="筛选">
+          <button class="filter is-active" type="button" data-filter="all">全部</button>
+          <button class="filter" type="button" data-filter="image">图片</button>
+          <button class="filter" type="button" data-filter="video">视频</button>
+          <button class="filter" type="button" data-filter="document">文档</button>
+          <button class="filter" type="button" data-filter="archive">压缩包</button>
+          <button class="filter" type="button" data-filter="favorite">收藏</button>
+          <button class="filter" type="button" data-filter="later">稍后整理</button>
+        </section>
+
+        <section class="summary-strip" aria-label="统计">
+          <div>
+            <strong id="totalCount">0</strong>
+            <span>当前结果</span>
+          </div>
+          <div>
+            <strong id="imageCount">0</strong>
+            <span>图片</span>
+          </div>
+          <div>
+            <strong id="videoCount">0</strong>
+            <span>视频</span>
+          </div>
+          <div>
+            <strong id="selectedFolder">全部目录</strong>
+            <span>浏览范围</span>
+          </div>
+        </section>
+
+        <section class="gallery" id="gallery" aria-label="文件画廊"></section>
+      </main>
+
+      <aside class="inspector" aria-label="详情">
+        <div class="empty-detail" id="emptyDetail">
+          <span class="icon large" aria-hidden="true">□</span>
+          <h3>选择一个文件</h3>
+          <p>这里会显示预览、路径、大小、标签和整理动作。</p>
+        </div>
+
+        <article class="detail-panel is-hidden" id="detailPanel">
+          <div class="detail-preview" id="detailPreview"></div>
+          <div class="detail-heading">
+            <h3 id="detailName"></h3>
+            <span id="detailType"></span>
+          </div>
+          <dl>
+            <div>
+              <dt>路径</dt>
+              <dd id="detailPath"></dd>
+            </div>
+            <div>
+              <dt>大小</dt>
+              <dd id="detailSize"></dd>
+            </div>
+            <div>
+              <dt>修改时间</dt>
+              <dd id="detailDate"></dd>
+            </div>
+          </dl>
+          <div class="detail-actions">
+            <button id="favoriteButton" type="button">收藏</button>
+            <button id="laterButton" type="button">稍后整理</button>
+          </div>
+          <div class="tag-list" id="detailTags"></div>
+        </article>
+      </aside>
+    </div>
+
+    <dialog id="connectDialog">
+      <form method="dialog">
+        <h3>115 接入位</h3>
+        <p>
+          后续只需要填写 <code>115-config.js</code>：
+          <code>mode</code> 改成 <code>115</code>，再填
+          <code>apiBaseUrl</code>、<code>refreshToken</code> 和可选的
+          <code>rootFolderId</code>。
+        </p>
+        <button type="submit">知道了</button>
+      </form>
+    </dialog>
+
+    <script src="./115-config.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
